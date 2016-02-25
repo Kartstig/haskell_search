@@ -24,7 +24,7 @@ equals key
 greaterThanEquals :: Int -> (String, String)
 greaterThanEquals key
   | length filtered == 1 = (" FoundExact   ", show (filtered !! 0))
-  | length filtered > 0 = (" FoundGreater ", show (minimum filtered))
+  | length filtered > 1 = (" FoundGreater ", show (minimum filtered))
   | otherwise = (" NotFound     ", "X")
     where filtered = findIndices (>= key) testData
 
