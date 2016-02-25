@@ -10,10 +10,11 @@ lessThan key
 
 lessThanEquals :: Int -> (String, String) 
 lessThanEquals key
-  | length filtered ==  1 = (" FoundExact   ", show (filtered !! 0))
-  | length filtered > 1 = (" FoundLess    ", show (maximum filtered))
+  | length exact == 1 = (" FoundExact   ", show (filtered !! 0))
+  | length filtered > 0 = (" FoundLess    ", show (maximum filtered))
   | otherwise = (" NotFound     ", "X")
     where filtered = findIndices (<= key) testData
+          exact = findIndices (== key) testData
 
 equals :: Int -> (String, String)
 equals key
@@ -23,10 +24,11 @@ equals key
 
 greaterThanEquals :: Int -> (String, String)
 greaterThanEquals key
-  | length filtered == 1 = (" FoundExact   ", show (filtered !! 0))
-  | length filtered > 1 = (" FoundGreater ", show (minimum filtered))
+  | length exact == 1 = (" FoundExact   ", show (filtered !! 0))
+  | length filtered > 0 = (" FoundGreater ", show (minimum filtered))
   | otherwise = (" NotFound     ", "X")
     where filtered = findIndices (>= key) testData
+          exact = findIndices (== key) testData
 
 greaterThan :: Int -> (String, String)
 greaterThan key
